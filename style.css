@@ -105,34 +105,40 @@ em{font-style:normal;color:var(--red)}
 .brands li:hover img{filter:none;opacity:1}
 
 /* scène (ref-03) : trois grands téléphones titane en perspective, deux notes papier */
-.stage{position:relative;margin-top:30px;height:760px;overflow:hidden;
-  -webkit-mask-image:linear-gradient(180deg,#000 85%,transparent);mask-image:linear-gradient(180deg,#000 85%,transparent)}
-.stage-in{position:absolute;top:0;left:50%;width:1120px;height:760px;translate:-50% 0;transform-origin:50% 0}
+/* Bloc téléphones, mesuré sur ref-03 (voir ../tokens.md) */
+.stage{position:relative;margin-top:30px;height:725px;overflow:hidden}
+.stage-in{position:absolute;top:0;left:50%;width:1120px;height:725px;translate:-50% 0;transform-origin:50% 0}
 .halo{position:absolute;left:50%;top:40px;width:1100px;height:760px;translate:-50% 0;border-radius:50%;
   background:radial-gradient(closest-side,rgba(var(--red-rgb),.16),rgba(var(--red-rgb),.07) 50%,rgba(var(--red-rgb),0))}
+/* ombre au sol, floue, sous les téléphones */
+.floor{position:absolute;left:50%;top:560px;width:620px;height:150px;translate:-50% 0;border-radius:50%;background:radial-gradient(closest-side,rgba(28,29,33,.20),rgba(28,29,33,0));filter:blur(14px);z-index:3}
+/* fondu : couche au-dessus des téléphones, vers la couleur exacte de la section suivante (#FBFAF9), sur les 24 % du bas */
+.stage::after{content:"";position:absolute;left:0;right:0;bottom:0;height:24%;z-index:5;pointer-events:none;background:linear-gradient(180deg,rgba(251,250,249,0) 0%,rgba(251,250,249,.18) 22%,rgba(251,250,249,.5) 46%,rgba(251,250,249,.82) 70%,#FBFAF9 92%)}
 
-/* iPhone Pro réaliste (proportions 1 : 2,06, coins ~ 16 % de la largeur), tout en em : 1em = largeur / 33 */
-.iphone{--w:350px;position:absolute;margin:0;width:var(--w);aspect-ratio:1/2.06;font-size:calc(var(--w) / 33);padding:.36em;border-radius:5.6em;
+/* UN composant téléphone (iPhone Pro), en % de sa largeur : 1em = 1 % de --w.
+   Cadre titane 1,6 %, bordure noire 2,1 %, écran 390×844, coins 16 %. */
+.iphone{--w:331px;position:absolute;margin:0;width:var(--w);height:calc(var(--w) * 2.078);font-size:calc(var(--w) / 100);padding:1.6em;border-radius:16em;transform-origin:50% 50%;
   background:linear-gradient(90deg,#8E949C 0%,#E9EBEE 4%,#C3C8CE 9%,#F3F4F6 35%,#DDE0E4 65%,#C0C5CB 91%,#E7E9EC 96%,#8A9098 100%);
-  box-shadow:inset 0 0 0 .08em rgba(255,255,255,.8),inset 0 .12em .2em rgba(255,255,255,.6),inset 0 -.15em .3em rgba(60,66,74,.25),
+  box-shadow:inset 0 0 0 .3em rgba(255,255,255,.8),inset 0 .4em .7em rgba(255,255,255,.6),inset 0 -.5em 1em rgba(60,66,74,.25),
     0 2px 4px rgba(28,29,33,.10),0 24px 48px -12px rgba(28,29,33,.22),0 70px 120px -40px rgba(28,29,33,.30)}
-.bezel{height:100%;padding:.7em;border-radius:5.24em;background:#0B0C0E;box-shadow:inset 0 0 0 .1em #24262B}
-.screen{position:relative;height:100%;border-radius:4.55em;overflow:hidden;background:#fff}
-.screen::after{content:"";position:absolute;inset:0;z-index:3;pointer-events:none;background:linear-gradient(120deg,rgba(255,255,255,.20) 0%,rgba(255,255,255,.05) 34%,rgba(255,255,255,0) 34.5%)}
-.status{position:absolute;inset:0 0 auto;z-index:2;display:flex;align-items:center;justify-content:space-between;height:4.4em;padding:0 2.4em 0 2.9em;background:#fff;color:#0B0C0E;font-size:1em}
-.status b{font-size:1.45em;font-weight:620;letter-spacing:-.01em}
-.status span{display:flex;align-items:center;gap:.4em;font-size:1.45em}
-.status .bat{font-size:1.25em}
-.island{position:absolute;left:50%;top:1em;width:9.6em;height:2.85em;translate:-50% 0;border-radius:2em;background:#000}
-.scr{position:absolute;top:4.4em;left:0;width:100%;height:auto}
-.hw{position:absolute;width:.42em;border-radius:.3em;background:linear-gradient(90deg,#7F858D,#D9DCE0 50%,#8D939B)}
-.hw-act{left:-.3em;top:17%;height:3.2em}.hw-vu{left:-.3em;top:24%;height:6em}.hw-vd{left:-.3em;top:32.5%;height:6em}.hw-pw{right:-.3em;top:26%;height:9.5em}
-.phone-c{--w:350px;left:385px;top:44px;z-index:2}
-.phone-l{--w:318px;left:104px;top:96px;z-index:1;transform:perspective(1400px) rotateX(20deg) rotateY(34deg) rotateZ(-22deg)}
-.phone-r{--w:308px;left:704px;top:110px;z-index:1;transform:perspective(1400px) rotateX(18deg) rotateY(-34deg) rotateZ(19deg)}
-.tag-demo{position:absolute;top:13%;left:-.9em;z-index:4;display:inline-flex;align-items:center;gap:5px;padding:6px 12px;border-radius:var(--r-pill);background:var(--red);color:#fff;font-size:13px;font-weight:600;box-shadow:var(--sh-red)}
+.bezel{height:100%;padding:2.1em;border-radius:14.4em;background:#0B0C0E;box-shadow:inset 0 0 0 .3em #24262B}
+.screen{position:relative;height:100%;border-radius:12.3em;overflow:hidden;background:#fff}
+.screen::after{content:"";position:absolute;inset:0;z-index:3;pointer-events:none;background:linear-gradient(120deg,rgba(255,255,255,.18) 0%,rgba(255,255,255,.04) 34%,rgba(255,255,255,0) 34.5%)}
+.status{position:absolute;inset:0 0 auto;z-index:2;display:flex;align-items:center;justify-content:space-between;height:11.2em;padding:0 7.4em 0 8.6em;background:#fff;color:#0B0C0E}
+.status b{font-size:4.1em;font-weight:620;letter-spacing:-.01em}
+.status span{display:flex;align-items:center;gap:1.2em;font-size:4em}
+.status .bat{font-size:1.15em}
+.island{position:absolute;left:50%;top:2.6em;width:28.7em;height:8.6em;translate:-50% 0;border-radius:5em;background:#000}
+.scr{position:absolute;top:11.2em;left:0;width:100%;height:auto}
+.hw{position:absolute;width:1.1em;border-radius:1em;background:linear-gradient(90deg,#7F858D,#D9DCE0 50%,#8D939B)}
+.hw-act{left:-.8em;top:17%;height:9em}.hw-vu{left:-.8em;top:24%;height:17em}.hw-vd{left:-.8em;top:32.5%;height:17em}.hw-pw{right:-.8em;top:26%;height:27em}
+/* les trois instances : seules position et rotation changent */
+.phone-c{left:394px;top:47px;z-index:2}
+.phone-l{left:149px;top:78px;z-index:1;transform:perspective(1500px) rotateZ(-23deg) rotateY(26deg) rotateX(14deg)}
+.phone-r{left:654px;top:72px;z-index:1;transform:perspective(1500px) rotateZ(18deg) rotateY(-26deg) rotateX(14deg)}
+.tag-demo{position:absolute;top:13%;left:-3em;z-index:4;display:inline-flex;align-items:center;gap:5px;padding:6px 12px;border-radius:var(--r-pill);background:var(--red);color:#fff;font-size:13px;font-weight:600;box-shadow:var(--sh-red)}
 .tag-demo svg{font-size:15px}
-.ex-tag{position:absolute;top:-1.6em;left:50%;translate:-50% 0;z-index:4;padding:4px 10px;border-radius:99px;background:#fff;color:var(--ink-2);font-size:12px;font-weight:560;box-shadow:var(--sh-2)}
+.ex-tag{position:absolute;top:-6em;left:50%;translate:-50% 0;z-index:4;padding:4px 10px;border-radius:99px;background:#fff;color:var(--ink-2);font-size:12px;font-weight:560;box-shadow:var(--sh-2)}
 
 /* notes papier (ref-03) : légèrement tournées, adhésif ou pince */
 .note{position:absolute;z-index:3;width:282px;padding:18px 20px 18px;border-radius:8px;background:#FFFEFB;text-align:left;font-size:15px;line-height:1.4;
@@ -485,8 +491,8 @@ em{font-style:normal;color:var(--red)}
 }
 
 /* ---------- Adaptations ---------- */
-@media (max-width:1180px){ .stage{height:680px} .stage-in{scale:.85} }
-@media (max-width:960px){ .stage{height:560px} .stage-in{scale:.7} }
+@media (max-width:1180px){ .stage{height:616px} .stage-in{scale:.85} }
+@media (max-width:960px){ .stage{height:508px} .stage-in{scale:.7} }
 @media (max-width:900px){
   .nav-links,.nav-cta{display:none}
   .burger{display:grid}
@@ -497,7 +503,7 @@ em{font-style:normal;color:var(--red)}
   .nav.open .nav-links .btn{display:flex;color:#fff;padding:0 22px;height:52px}
   .nav-wrap{inset:10px 0 auto}
 }
-@media (max-width:720px){ .stage{height:480px} .stage-in{scale:.6} }
+@media (max-width:720px){ .stage{height:478px} .stage-in{scale:.66} }
 /* téléphone : le grand téléphone à gauche, les cartes en colonne à droite, sans recouvrement */
 @media (max-width:640px){
   .hero{padding-top:98px}
@@ -508,14 +514,9 @@ em{font-style:normal;color:var(--red)}
   .ctas .btn{width:100%}
   .brands{flex-direction:column;gap:10px;margin-top:22px}
   .brands ul{gap:18px}
-  .stage{height:500px;margin-top:30px}
-  .stage-in{scale:1;width:390px;height:500px}
-  .hero-bg>.surface{top:auto;bottom:-40px;height:560px}
-  .halo{width:600px;height:600px;top:40px}
+  .stage{height:478px;margin-top:26px}
+  .stage-in{scale:.66}
   .note{display:none}
-  .stage-in .phone-c{--w:232px;left:79px;top:24px}
-  .stage-in .phone-l{--w:200px;left:-96px;top:74px}
-  .stage-in .phone-r{--w:196px;left:290px;top:84px}
   .ex-tag{display:none}
-  .tag-demo{top:60px;left:-10px;font-size:12px;padding:5px 10px}
+  .tag-demo{font-size:12px;padding:5px 10px}
 }
