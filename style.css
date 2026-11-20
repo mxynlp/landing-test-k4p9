@@ -69,24 +69,7 @@ em{font-style:normal;color:var(--red)}
 
 /* ---------- Hero ---------- */
 .hero{position:relative;padding-top:124px;text-align:center;overflow:clip;isolation:isolate}
-.hero-bg{position:absolute;inset:0;z-index:-1;
-  background:
-    radial-gradient(42% 30% at 50% 22%,rgba(var(--red-rgb),.07),transparent 72%),
-    radial-gradient(30% 45% at 0% 70%,rgba(var(--red-rgb),.09),transparent 70%),
-    radial-gradient(30% 45% at 100% 66%,rgba(var(--red-rgb),.08),transparent 70%),
-    linear-gradient(180deg,#FCFBFA 0%,#F7F3F3 45%,#F1E9EA 75%,var(--bg))}
-/* surface incurvée (ref-01) : creux en haut, bosse en bas, ombre portée par le parent */
-.surface{position:absolute}
-.hero-bg>.surface{left:-10%;right:-10%;top:470px;height:700px;filter:drop-shadow(0 -1px 0 rgba(var(--red-rgb),.20)) drop-shadow(0 -16px 30px rgba(28,29,33,.06));
-  background:
-    linear-gradient(180deg,#fff,rgba(255,255,255,.9) 50%,rgba(255,255,255,.55)),
-    radial-gradient(34% 80% at 0 40%,rgba(var(--red-rgb),.14),transparent),
-    radial-gradient(34% 80% at 100% 40%,rgba(var(--red-rgb),.12),transparent);
-  -webkit-mask:radial-gradient(58% 190px at 50% 0,transparent 98%,#000 100%),radial-gradient(64% 150px at 50% 100%,transparent 98%,#000 100%);
-  -webkit-mask-composite:source-in;
-  mask:radial-gradient(58% 190px at 50% 0,transparent 98%,#000 100%),radial-gradient(64% 150px at 50% 100%,transparent 98%,#000 100%);
-  mask-composite:intersect}
-
+.hero-bg{position:absolute;inset:0;z-index:-1;background:#FBFAF9}
 .hero-bg::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(90deg,rgba(28,29,33,.045) 0 1px,transparent 1px 92px);background-position:calc(50% + 46px) 0;-webkit-mask-image:linear-gradient(180deg,transparent 0%,#000 18%,#000 70%,transparent 96%);mask-image:linear-gradient(180deg,transparent 0%,#000 18%,#000 70%,transparent 96%)}
 .hero-copy{display:flex;flex-direction:column;align-items:center}
 .hero h1{margin-top:22px;font-size:clamp(40px,4.8vw,68px);font-weight:700;letter-spacing:-.04em;line-height:1}
@@ -108,20 +91,22 @@ em{font-style:normal;color:var(--red)}
 /* Bloc téléphones, mesuré sur ref-03 (voir ../tokens.md) */
 .stage{position:relative;margin-top:30px;height:725px;overflow:hidden}
 .stage-in{position:absolute;top:0;left:50%;width:1120px;height:725px;translate:-50% 0;transform-origin:50% 0}
-.halo{position:absolute;left:50%;top:40px;width:1100px;height:760px;translate:-50% 0;border-radius:50%;
-  background:radial-gradient(closest-side,rgba(var(--red-rgb),.16),rgba(var(--red-rgb),.07) 50%,rgba(var(--red-rgb),0))}
+.halo{position:absolute;left:50%;top:150px;width:980px;height:600px;translate:-50% 0;border-radius:50%;background:radial-gradient(closest-side,rgba(var(--red-rgb),.15),rgba(var(--red-rgb),.06) 55%,rgba(var(--red-rgb),0))}
 /* ombre au sol, floue, sous les téléphones */
-.floor{position:absolute;left:50%;top:560px;width:620px;height:150px;translate:-50% 0;border-radius:50%;background:radial-gradient(closest-side,rgba(28,29,33,.20),rgba(28,29,33,0));filter:blur(14px);z-index:3}
+.floor{position:absolute;left:50%;top:610px;width:760px;height:170px;translate:-50% 0;border-radius:50%;background:radial-gradient(closest-side,rgba(28,29,33,.18),rgba(28,29,33,0));filter:blur(18px);z-index:3}
 /* fondu : couche au-dessus des téléphones, vers la couleur exacte de la section suivante (#FBFAF9), sur les 24 % du bas */
-.stage::after{content:"";position:absolute;left:0;right:0;bottom:0;height:24%;z-index:5;pointer-events:none;background:linear-gradient(180deg,rgba(251,250,249,0) 0%,rgba(251,250,249,.18) 22%,rgba(251,250,249,.5) 46%,rgba(251,250,249,.82) 70%,#FBFAF9 92%)}
+.stage::after{content:"";position:absolute;left:0;right:0;bottom:0;height:18%;z-index:5;pointer-events:none;background:linear-gradient(180deg,rgba(251,250,249,0) 0%,rgba(251,250,249,.08) 12%,rgba(251,250,249,.24) 26%,rgba(251,250,249,.46) 40%,rgba(251,250,249,.68) 55%,rgba(251,250,249,.86) 70%,rgba(251,250,249,.96) 84%,#FBFAF9 94%)}
 
 /* UN composant téléphone (iPhone Pro), en % de sa largeur : 1em = 1 % de --w.
-   Cadre titane 1,6 %, bordure noire 2,1 %, écran 390×844, coins 16 %. */
-.iphone{--w:331px;position:absolute;margin:0;width:var(--w);height:calc(var(--w) * 2.078);font-size:calc(var(--w) / 100);padding:1.6em;border-radius:16em;transform-origin:50% 50%;
-  background:linear-gradient(90deg,#8E949C 0%,#E9EBEE 4%,#C3C8CE 9%,#F3F4F6 35%,#DDE0E4 65%,#C0C5CB 91%,#E7E9EC 96%,#8A9098 100%);
-  box-shadow:inset 0 0 0 .3em rgba(255,255,255,.8),inset 0 .4em .7em rgba(255,255,255,.6),inset 0 -.5em 1em rgba(60,66,74,.25),
-    0 2px 4px rgba(28,29,33,.10),0 24px 48px -12px rgba(28,29,33,.22),0 70px 120px -40px rgba(28,29,33,.30)}
-.bezel{height:100%;padding:2.1em;border-radius:14.4em;background:#0B0C0E;box-shadow:inset 0 0 0 .3em #24262B}
+   Bord argenté épais et légèrement translucide (2,4 %), arête brillante, bordure noire fine (1,4 %), écran 390×844, coins 16 %.
+   L'épaisseur est un vrai volume 3D (dos décalé en Z), visible grâce à la perspective du conteneur. */
+.stage-in{perspective:1400px;perspective-origin:50% 30%}
+.iphone{--w:331px;position:absolute;margin:0;width:var(--w);height:calc(var(--w) * 2.078);font-size:calc(var(--w) / 100);padding:2.8em;border-radius:16em;transform-style:preserve-3d;
+  background:linear-gradient(100deg,#D9DCE0 0%,#F7F8F9 6%,#E4E7EA 18%,#FBFBFC 46%,#E6E8EB 78%,#F6F7F8 92%,#D6D9DD 100%);
+  box-shadow:inset 0 0 0 .22em rgba(255,255,255,.95),inset .8em .6em 1.2em rgba(255,255,255,.7),inset -.6em -.7em 1.2em rgba(150,156,164,.22),
+    0 1px 2px rgba(28,29,33,.06),0 26px 50px -14px rgba(28,29,33,.18),0 70px 120px -40px rgba(28,29,33,.22)}
+.iphone::before{content:"";position:absolute;inset:0;border-radius:inherit;transform:translateZ(-2.6em);background:linear-gradient(100deg,#C9CDD2,#E9EBEE 45%,#CDD1D6)}
+.bezel{position:relative;height:100%;padding:.9em;border-radius:13.2em;background:#141518}
 .screen{position:relative;height:100%;border-radius:12.3em;overflow:hidden;background:#fff}
 .screen::after{content:"";position:absolute;inset:0;z-index:3;pointer-events:none;background:linear-gradient(120deg,rgba(255,255,255,.18) 0%,rgba(255,255,255,.04) 34%,rgba(255,255,255,0) 34.5%)}
 .status{position:absolute;inset:0 0 auto;z-index:2;display:flex;align-items:center;justify-content:space-between;height:11.2em;padding:0 7.4em 0 8.6em;background:#fff;color:#0B0C0E}
@@ -130,15 +115,15 @@ em{font-style:normal;color:var(--red)}
 .status .bat{font-size:1.15em}
 .island{position:absolute;left:50%;top:2.6em;width:28.7em;height:8.6em;translate:-50% 0;border-radius:5em;background:#000}
 .scr{position:absolute;top:11.2em;left:0;width:100%;height:auto}
-.hw{position:absolute;width:1.1em;border-radius:1em;background:linear-gradient(90deg,#7F858D,#D9DCE0 50%,#8D939B)}
+.hw{position:absolute;width:1.1em;border-radius:1em;background:linear-gradient(90deg,#C3C7CC,#F2F3F5 50%,#C7CBD0)}
 .hw-act{left:-.8em;top:17%;height:9em}.hw-vu{left:-.8em;top:24%;height:17em}.hw-vd{left:-.8em;top:32.5%;height:17em}.hw-pw{right:-.8em;top:26%;height:27em}
-/* les trois instances : seules position et rotation changent */
-.phone-c{left:394px;top:47px;z-index:2}
-.phone-l{left:149px;top:78px;z-index:1;transform:perspective(1500px) rotateZ(-23deg) rotateY(26deg) rotateX(14deg)}
-.phone-r{left:654px;top:72px;z-index:1;transform:perspective(1500px) rotateZ(18deg) rotateY(-26deg) rotateX(14deg)}
+/* les trois instances : seules position et rotation changent (éventail autour d'un pivot sous l'axe central) */
+.phone-c{left:394px;top:47px;z-index:2;transform:rotateX(8deg)}
+.phone-l{left:196px;top:70px;z-index:1;transform-origin:50% 100%;transform:translateZ(-120px) rotateZ(-20deg) rotateY(14deg) rotateX(10deg)}
+.phone-r{left:594px;top:70px;z-index:1;transform-origin:50% 100%;transform:translateZ(-120px) rotateZ(20deg) rotateY(-14deg) rotateX(10deg)}
 .tag-demo{position:absolute;top:13%;left:-3em;z-index:4;display:inline-flex;align-items:center;gap:5px;padding:6px 12px;border-radius:var(--r-pill);background:var(--red);color:#fff;font-size:13px;font-weight:600;box-shadow:var(--sh-red)}
 .tag-demo svg{font-size:15px}
-.ex-tag{position:absolute;top:-6em;left:50%;translate:-50% 0;z-index:4;padding:4px 10px;border-radius:99px;background:#fff;color:var(--ink-2);font-size:12px;font-weight:560;box-shadow:var(--sh-2)}
+.ex-tag{position:absolute;top:19%;right:9em;z-index:4;padding:.9em 3em;border-radius:99px;background:rgba(255,255,255,.94);color:var(--ink);font-size:3.6em;font-weight:600;box-shadow:0 1px 3px rgba(28,29,33,.18)}
 
 /* notes papier (ref-03) : légèrement tournées, adhésif ou pince */
 .note{position:absolute;z-index:3;width:282px;padding:18px 20px 18px;border-radius:8px;background:#FFFEFB;text-align:left;font-size:15px;line-height:1.4;
@@ -150,9 +135,9 @@ em{font-style:normal;color:var(--red)}
 .n-head b{font-size:16px;font-weight:650;letter-spacing:-.01em}
 .n-head time{margin-left:auto;color:var(--ink-2);font-size:13px}
 .n-msg{margin-top:10px;font-size:16px;line-height:1.4;color:var(--ink)}
-.hero-notes{position:absolute;top:0;left:50%;width:1380px;height:600px;translate:-50% 0;pointer-events:none}
-.note-l{left:20px;top:318px;rotate:-1.5deg}
-.note-r{right:20px;top:300px;rotate:1.5deg}
+.hero-notes{position:absolute;top:0;left:0;right:0;height:700px;pointer-events:none}
+.note-l{left:30px;top:392px;rotate:-1.5deg}
+.note-r{right:30px;top:372px;rotate:1.5deg}
 @media (max-width:1300px){.hero-notes{display:none}}
 .tape{position:absolute;top:-12px;left:50%;width:90px;height:24px;translate:-50% 0;rotate:-3deg;background:rgba(236,226,206,.8);box-shadow:0 1px 2px rgba(28,29,33,.08)}
 .clip{position:absolute;top:-16px;right:30px;width:16px;height:44px;border-radius:9px;border:3px solid #A9AFB7;border-bottom-color:transparent;rotate:8deg}
@@ -517,6 +502,5 @@ em{font-style:normal;color:var(--red)}
   .stage{height:478px;margin-top:26px}
   .stage-in{scale:.66}
   .note{display:none}
-  .ex-tag{display:none}
   .tag-demo{font-size:12px;padding:5px 10px}
 }
